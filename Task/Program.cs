@@ -6,6 +6,7 @@
 
 int Prompt (string msg)
 {
+    Console.Clear();
     Console.WriteLine(msg);
     string value = Console.ReadLine()!;
     int val = 0;
@@ -25,66 +26,73 @@ void PrintArray (string[] Array)
     }
 }
 
-string [] New_Arrey (string[] Array) 
+int Reange_Array ()
 {
-    int Count_New_Arey=0;
+    int Reange_Array = 0;
+    while (Reange_Array<1)
+    {
+        Reange_Array = Prompt("Введите размер одномерного массива");
+    }
+    return Reange_Array;
+}
+
+string [] Input (int Reange_Array)
+{
+    int Var_Insert = 0;
+    while (Var_Insert<1 || Var_Insert>2 )
+    {
+        Var_Insert = Prompt("Введите вариант заполнения где : 1 - ручной ввод, 2 - рандомное автозаполнение ");
+    }
+    string [] Input = new string [Reange_Array];
+    {
+        if (Var_Insert==1)
+        {
+            for (int i = 0; i < Reange_Array; i++)
+            {
+                Console.WriteLine($"Заполните {i+1} элемент из массива {Reange_Array} элементов");
+                Input [i] = Console.ReadLine()!;
+            }
+        } else if (Var_Insert==2)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                int length = new Random().Next(1, 10);
+            for (int i = 0; i < Reange_Array; i++)
+            {
+                Input [i] = new string(Enumerable.Repeat(chars, length).Select(s => s[new Random().Next(s.Length)]).ToArray());
+                length = new Random().Next(1, 10);
+            }
+        }
+    }
+    return Input;
+}
+
+string [] New_Array (string[] Array) 
+{
+    int Count_New_Array=0;
     for (int i = 0; i < Array.Length; i++)
     {
         if ( Array[i].Length<4)
         {
-            Count_New_Arey++;
+            Count_New_Array++;
         }
     }
-    string [] New_Arey = new string [Count_New_Arey];
-    if (Count_New_Arey>0)
+    string [] New_Array = new string [Count_New_Array];
+    if (Count_New_Array>0)
     {
         int count = 0;
         for (int i = 0; i < Array.Length; i++)
         {
             if ( Array[i].Length<4)
             {
-                New_Arey[count]=Array[i];
+                New_Array[count]=Array[i];
                 count++;
             }
         }
-    }
-    return New_Arey;
+    } else Console.WriteLine("Нет строк длина которых меньше, либо равна 3 символам");
+    return New_Array;
 }
 
-int Reange_Arey = 0;
-int Var_Insert = 0;
-
-while (Reange_Arey<1)
-{
-    Reange_Arey = Prompt("Введите размер одномерного массива");
-}
-
-while (Var_Insert<1 || Var_Insert>2 )
-{
-    Var_Insert = Prompt("Введите вариант заполнения где : 1 - ручной ввод, 2 - рандомное автозаполнение ");
-}
-
-string [] Input = new string [Reange_Arey];
-{
-    if (Var_Insert==1)
-    {
-        for (int i = 0; i < Reange_Arey; i++)
-        {
-            Console.WriteLine($"Заполните {i+1} элемент из массива {Reange_Arey} элементов");
-            Input [i] = Console.ReadLine()!;
-        }
-    } else if (Var_Insert==2)
-    {
-        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            int length = new Random().Next(1, 10);
-        for (int i = 0; i < Reange_Arey; i++)
-        {
-            Input [i] = new string(Enumerable.Repeat(chars, length).Select(s => s[new Random().Next(s.Length)]).ToArray());
-            length = new Random().Next(1, 10);
-        }
-    }
-}
-
-PrintArray (Input);
+string [] Array  = Input(Reange_Array());
+PrintArray (Array);
 Console.WriteLine();
-PrintArray(New_Arrey(Input));
+PrintArray(New_Array(Array));
