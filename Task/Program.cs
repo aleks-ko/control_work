@@ -14,7 +14,6 @@ int Prompt (string msg)
         Console.WriteLine("Неверный ввод. Повторите: ");
         value = Console.ReadLine()!;
     }
-    //Console.Clear();
     return val;
 }
 
@@ -24,6 +23,32 @@ void PrintArray (string[] Array)
     {
         Console.Write($"'{Array[i]}' ");
     }
+}
+
+string [] New_Arrey (string[] Array) 
+{
+    int Count_New_Arey=0;
+    for (int i = 0; i < Array.Length; i++)
+    {
+        if ( Array[i].Length<4)
+        {
+            Count_New_Arey++;
+        }
+    }
+    string [] New_Arey = new string [Count_New_Arey];
+    if (Count_New_Arey>0)
+    {
+        int count = 0;
+        for (int i = 0; i < Array.Length; i++)
+        {
+            if ( Array[i].Length<4)
+            {
+                New_Arey[count]=Array[i];
+                count++;
+            }
+        }
+    }
+    return New_Arey;
 }
 
 int Reange_Arey = 0;
@@ -59,4 +84,7 @@ string [] Input = new string [Reange_Arey];
         }
     }
 }
+
 PrintArray (Input);
+Console.WriteLine();
+PrintArray(New_Arrey(Input));
