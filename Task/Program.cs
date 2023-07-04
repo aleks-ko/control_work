@@ -4,7 +4,7 @@
  При решении не рекомендуется пользоваться коллекциями, лучше обойтись исключительно массивами.
 */
 
-int Prompt (string msg)
+int Prompt (string msg) // вывод сообщения обратно получаем число с проверкой на корректность ввода
 {
     Console.Clear();
     Console.WriteLine(msg);
@@ -18,7 +18,7 @@ int Prompt (string msg)
     return val;
 }
 
-void PrintArray (string[] Array) 
+void PrintArray (string[] Array) //Печать одномерного массива типа string
 {
     for (int i = 0; i < Array.Length; i++)
     {
@@ -26,7 +26,7 @@ void PrintArray (string[] Array)
     }
 }
 
-int Reange_Array ()
+int Reange_Array () //запрашиваем у пользователя число большее 0, с проверкой на ввод
 {
     int Reange_Array = 0;
     while (Reange_Array<1)
@@ -36,7 +36,7 @@ int Reange_Array ()
     return Reange_Array;
 }
 
-string [] Input (int Reange_Array)
+string [] Input (int Reange_Array) //принимаем размер массива, предлагаем пользователю варианты заполнения(ручной/рандомное автозаполнение), возвращаем получаем заполненый массив типа string
 {
     int Var_Insert = 0;
     while (Var_Insert<1 || Var_Insert>2 )
@@ -66,7 +66,7 @@ string [] Input (int Reange_Array)
     return Input;
 }
 
-string [] New_Array (string[] Array) 
+string [] New_Array (string[] Array) //Принимаем массив типа string, возвращаем массив из строк, длина которых меньше, либо равна 3 символам. Если таковых нет - выводем соответствующее сообщение
 {
     int Count_New_Array=0;
     for (int i = 0; i < Array.Length; i++)
