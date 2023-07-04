@@ -50,10 +50,12 @@ string [] Input = new string [Reange_Arey];
         }
     } else if (Var_Insert==2)
     {
+        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            int length = new Random().Next(1, 10);
         for (int i = 0; i < Reange_Arey; i++)
         {
-            Console.WriteLine($"Заполните {i+1} элемент из массива {Reange_Arey} элементов");
-            Input [i] = Console.ReadLine()!;
+            Input [i] = new string(Enumerable.Repeat(chars, length).Select(s => s[new Random().Next(s.Length)]).ToArray());
+            length = new Random().Next(1, 10);
         }
     }
 }
